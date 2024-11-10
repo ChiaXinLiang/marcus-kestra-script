@@ -21,11 +21,13 @@ tasks:
 
 triggers:
   - id: webhook
-    type: io.kestra.plugin.git.Webhook
-    events:
-      - push
-    branch: company-team
-    secret: "{{ secret('GITHUB_WEBHOOK_SECRET') }}"
+    type: io.kestra.plugin.core.trigger.Webhook
+    key: "{{ secret('GITHUB_WEBHOOK_SECRET') }}"
+    conditions:
+      - type: io.kestra.plugin.core.condition.ExpressionCondition
+        expression: "{{ trigger.body.pull_request.state == 'open' and
+          trigger.body.pull_request.comments_url }}"
+
     # To set up GitHub webhook:
     # 1. Go to your GitHub repository
     # 2. Click "Settings" tab
