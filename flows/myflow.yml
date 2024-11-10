@@ -1,6 +1,0 @@
-id: myflow
-namespace: prod
-tasks:
-  - id: hello
-    type: io.kestra.plugin.core.log.Log
-    message: Hello "{{ envs.weaviate_api_key }}"
