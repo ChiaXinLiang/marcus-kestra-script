@@ -2,9 +2,19 @@ id: push_to_git
 namespace: company.team
 
 tasks:
-  - id: clone
-    type: io.kestra.plugin.git.Clone
-    url: https://github.com/kestra-io/examples
-    branch: main
+  - id: commit_and_push
+    type: io.kestra.plugin.git.Push
+    namespaceFiles:
+      enabled: true
+    flows:
+      enabled: true
+    url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
+    branch: company-team
     username: marcus
-    password: "{{secret('GITHUB_ACCESS_TOKEN')}}"
+    password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
+    commitMessage: "add flows and scripts {{ now() }}"
+
+triggers:
+  - id: schedule_push
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "*/15 * * * *"

@@ -3,12 +3,15 @@ namespace: company.team
 
 tasks:
   - id: git
-    type: io.kestra.plugin.git.Sync
+    type: io.kestra.plugin.git.SyncNamespaceFiles
+    namespace: company.team
+    gitDirectory: _files # optional; set to _files by default
+    delete: true # optional; by default, it's set to false to avoid destructive behavior
     url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
-    branch: main
+    branch: company-team
     username: marcus
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
-    dryRun: true  # if true, print the output of what files will be added/modified or deleted without overwriting the files yet
+    dryRun: false  # if true, the task will only log which flows from Git will be added/modified or deleted in kestra without making any changes in kestra backend yet
 
 triggers:
   - id: every_minute
