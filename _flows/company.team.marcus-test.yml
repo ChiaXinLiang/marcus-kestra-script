@@ -6,5 +6,9 @@ tasks:
     type: io.kestra.plugin.scripts.python.Commands
     taskRunner:
       type: io.kestra.plugin.core.runner.Process
+    namespaceFiles:
+      enabled: true
+      include:
+        - python-script/hi-there.py
     commands:
       - python python-script/hi-there.py
