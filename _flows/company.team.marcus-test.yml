@@ -1,16 +1,10 @@
-id: marcus-test
+id: gpu_task
 namespace: company.team
 
 tasks:
   - id: python
     type: io.kestra.plugin.scripts.python.Commands
-    namespaceFiles:
-      enabled: true
-      include:
-        - python-script/hi-there.py
     taskRunner:
       type: io.kestra.plugin.core.runner.Process
-    beforeCommands:
-      - conda activate myCondaEnv
     commands:
-      - python hi-there.py
+      - python python-script/hi-there.py
