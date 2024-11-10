@@ -1,0 +1,25 @@
+id: weaviate-create-schema
+namespace: prod
+
+inputs:
+  - id: weaviateClusterUrl
+    type: STRING
+    defaults: https://zlofcnwgsgia5cjsaqiqa.c0.us-west3.gcp.weaviate.cloud
+  - id: weaviateApiKey
+    type: STRING
+    defaults: V1JNR9CXTAn5DOIesawPiNTXrTeSj9O8xuVq
+
+
+tasks:
+  - id: createWeaviateSchema
+    type: io.kestra.plugin.weaviate.SchemaCreate
+    url: "{{ inputs.weaviateClusterUrl }}"
+    apiKey: "{{ inputs.weaviateApiKey }}"
+    className: Movie
+    fields:
+      name:
+        - string
+      description:
+        - string
+      category:
+        - string
