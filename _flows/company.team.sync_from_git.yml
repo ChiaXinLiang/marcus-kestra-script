@@ -8,7 +8,7 @@ tasks:
     targetNamespace: company.team # required
     includeChildNamespaces: true # optional; by default, it's set to false to allow explicit definition
     delete: true # optional; by default, it's set to false to avoid destructive behavior
-    url: https://github.com/kestra-io/flows # required
+    url: https://github.com/ChiaXinLiang/marcus-kestra-script.git # required
     branch: company-team
     username: marcus
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
