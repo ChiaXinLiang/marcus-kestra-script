@@ -2,7 +2,7 @@ id: sync_from_git
 namespace: company.team
 
 tasks:
-  - id: git
+  - id: sync_flows
     type: io.kestra.plugin.git.Sync
     url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
     branch: company-team
@@ -10,7 +10,7 @@ tasks:
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
     dryRun: false
 
-  - id: git
+  - id: sync_files
     type: io.kestra.plugin.git.SyncNamespaceFiles
     url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
     branch: company-team
@@ -25,8 +25,7 @@ triggers:
     key: "{{ secret('GITHUB_WEBHOOK_SECRET') }}"
     conditions:
       - type: io.kestra.plugin.core.condition.ExpressionCondition
-        expression: "{{ trigger.body.pull_request.state == 'open' and
-          trigger.body.pull_request.comments_url }}"
+        expression: "{{ trigger.body.ref == 'refs/heads/company-team' }}"
 
     # To set up GitHub webhook:
     # 1. Go to your GitHub repository
