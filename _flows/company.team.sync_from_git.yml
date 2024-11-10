@@ -8,19 +8,31 @@ tasks:
     branch: company-team
     username: marcus
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
-    # namespaceFilesDirectory: company.team # optional, otherwise the namespace root directory
-    dryRun: false  # if true, print the output of what files will be added/modified or deleted without overwriting the files yet
+    dryRun: false
 
   - id: git
-    type: io.kestra.plugin.git.SyncNamespaceFiles  # Correct task type
+    type: io.kestra.plugin.git.SyncNamespaceFiles
     url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
     branch: company-team
     username: marcus
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
-    gitDirectory: _files  # Specify the directory containing your files
+    gitDirectory: _files
     dryRun: false
-    
+
 triggers:
-  - id: every_minute
-    type: io.kestra.plugin.core.trigger.Schedule
-    cron: "*/1 * * * *"
+  - id: webhook
+    type: io.kestra.plugin.git.Webhook
+    events:
+      - push
+    branch: company-team
+    secret: "{{ secret('GITHUB_WEBHOOK_SECRET') }}"
+    # To set up GitHub webhook:
+    # 1. Go to your GitHub repository
+    # 2. Click "Settings" tab
+    # 3. Click "Webhooks" in left sidebar
+    # 4. Click "Add webhook"
+    # 5. Set Payload URL to your Kestra webhook URL (e.g. https://your-kestra-url/api/v1/webhooks/git/{namespace}/{flowId})
+    # 6. Set Content type to "application/json"
+    # 7. Set Secret to match the value in GITHUB_WEBHOOK_SECRET
+    # 8. Select "Just the push event" under events
+    # 9. Click "Add webhook"
