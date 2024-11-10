@@ -16,7 +16,7 @@ tasks:
 
   - id: sync_files
     type: io.kestra.plugin.git.SyncNamespaceFiles
-    # namespace: company.team
+    namespace: company.team
     gitDirectory: _files
     delete: true
     url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
