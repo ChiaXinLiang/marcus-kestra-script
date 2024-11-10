@@ -20,9 +20,9 @@ tasks:
     dryRun: false
 
 triggers:
-  - id: webhook
-    type: io.kestra.plugin.core.trigger.Webhook
-    key: testtest123123
+  - id: every_minute
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "*/1 * * * *"
 
     # To set up GitHub webhook:
     # 1. Go to your GitHub repository
@@ -34,3 +34,4 @@ triggers:
     # 7. Set Secret to match the value in GITHUB_WEBHOOK_SECRET
     # 8. Select "Just the push event" under events
     # 9. Click "Add webhook"
+    # Example webhook curl command:
