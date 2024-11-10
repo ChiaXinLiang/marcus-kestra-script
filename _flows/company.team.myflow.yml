@@ -3,4 +3,4 @@ namespace: company.team
 tasks:
   - id: hello-world
     type: io.kestra.plugin.core.log.Log
-    message: Hello "{{ envs.weaviate_api_key }}"
+    message: Hello world
