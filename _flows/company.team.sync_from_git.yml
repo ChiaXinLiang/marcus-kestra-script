@@ -17,6 +17,7 @@ tasks:
   - id: sync_files
     type: io.kestra.plugin.git.SyncNamespaceFiles
     url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
+    delete: true
     branch: company-team
     username: marcus
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
