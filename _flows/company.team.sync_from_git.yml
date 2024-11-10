@@ -9,7 +9,7 @@ tasks:
     username: marcus
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
     # namespaceFilesDirectory: company.team # optional, otherwise the namespace root directory
-    dryRun: true  # if true, print the output of what files will be added/modified or deleted without overwriting the files yet
+    dryRun: false  # if true, print the output of what files will be added/modified or deleted without overwriting the files yet
 
 triggers:
   - id: every_minute
