@@ -14,6 +14,12 @@ tasks:
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
     dryRun: false # if true, the task will only log which flows from Git will be added/modified or deleted in kestra without making any changes in kestra backend yet
 
+  - id: delete
+    type: io.kestra.plugin.core.namespace.DeleteFiles
+    # namespace: tutorial
+    files:
+      - "**"
+
   - id: sync_files
     type: io.kestra.plugin.git.SyncNamespaceFiles
     gitDirectory: _files
