@@ -11,6 +11,15 @@ tasks:
     # namespaceFilesDirectory: company.team # optional, otherwise the namespace root directory
     dryRun: false  # if true, print the output of what files will be added/modified or deleted without overwriting the files yet
 
+  - id: git
+    type: io.kestra.plugin.git.SyncNamespaceFiles  # Correct task type
+    url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
+    branch: company-team
+    username: marcus
+    password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
+    gitDirectory: _files  # Specify the directory containing your files
+    dryRun: false
+    
 triggers:
   - id: every_minute
     type: io.kestra.plugin.core.trigger.Schedule
