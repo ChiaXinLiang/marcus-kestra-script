@@ -3,12 +3,16 @@ namespace: company.team
 
 tasks:
   - id: sync_flows
-    type: io.kestra.plugin.git.Sync
-    url: https://github.com/ChiaXinLiang/marcus-kestra-script.git
+    type: io.kestra.plugin.git.SyncFlows
+    gitDirectory: _flows # optional; set to _flows by default
+    targetNamespace: company.team # required
+    includeChildNamespaces: true # optional; by default, it's set to false to allow explicit definition
+    delete: true # optional; by default, it's set to false to avoid destructive behavior
+    url: https://github.com/kestra-io/flows # required
     branch: company-team
     username: marcus
     password: "{{ secret('GITHUB_ACCESS_TOKEN') }}"
-    dryRun: false
+    dryRun: false # if true, the task will only log which flows from Git will be added/modified or deleted in kestra without making any changes in kestra backend yet
 
   - id: sync_files
     type: io.kestra.plugin.git.SyncNamespaceFiles
