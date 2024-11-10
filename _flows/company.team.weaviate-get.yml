@@ -1,5 +1,5 @@
 id: weaviate-get
-namespace: prod
+namespace: company.team
 
 tasks:
   - id: getWeaviateMovies

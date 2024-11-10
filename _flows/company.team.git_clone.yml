@@ -1,5 +1,5 @@
 id: git_clone
-namespace: prod
+namespace: company.team
 
 tasks:
   - id: commit_and_push

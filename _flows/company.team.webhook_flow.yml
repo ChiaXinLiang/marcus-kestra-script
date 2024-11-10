@@ -1,5 +1,5 @@
 id: webhook_flow
-namespace: prod
+namespace: company.team
 
 tasks:
   - id: log_hello_world

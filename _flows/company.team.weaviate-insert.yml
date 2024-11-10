@@ -1,5 +1,5 @@
 id: weaviate-insert
-namespace: prod
+namespace: company.team
 
 tasks:      
   - id: insertWeaviateMovies

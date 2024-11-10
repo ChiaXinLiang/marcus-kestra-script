@@ -1,5 +1,5 @@
 id: weaviate-create-schema
-namespace: prod
+namespace: company.team
 
 inputs:
   - id: weaviateClusterUrl
