@@ -10,5 +10,7 @@ tasks:
       enabled: true
       include:
         - python-script/hi-there.py
+        - python-script/hello123.py
     commands:
       - python python-script/hi-there.py
+      - python python-script/hello123.py
